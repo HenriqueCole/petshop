@@ -13,7 +13,8 @@ public class Main {
                 "\n2- Listar animal;" +
                 "\n3- Remover animal;" +
                 "\n4- Editar animal;" +
-                "\n5- Sair.");
+                "\n5- Doar animais" +
+                "\n6- Sair.");
         int opcao = sc.nextInt();
         switch (opcao){
             case 1:
@@ -29,10 +30,84 @@ public class Main {
                 editar();
                 break;
             case 5:
+                doar();
+                break;
+            case 6:
                 System.out.println("Obrigado por utilizar nosso programa. Volte sempre!");
                 System.exit(0);
                 break;
         }
+    }
+
+    private static void doar() {
+        System.out.println("--- DOAR ---" +
+                "\n1- Cachorro;" +
+                "\n2- Gato;" +
+                "\n3- Voltar.");
+        int opcao = sc.nextInt();
+        switch (opcao){
+            case 1:
+                doarCachorro();
+                break;
+            case 2:
+                doarGato();
+                break;
+            case 3:
+                menuPrincipal();
+                break;
+        }
+    }
+
+    private static void doarGato() {
+        System.out.println("--- DOAR GATO ---");
+        System.out.println("Nome do gato: ");
+        String nome = sc.next();
+        for (int i = 0; i < Gato.listaGato.size(); i++){
+            if (nome.equals(Gato.listaGato.get(i).getNome())){
+                System.out.println("Têm certeza que deseja doar o(a) " + nome + "?" +
+                        "\n1- Sim;" +
+                        "\n2- Não.");
+                int opcaoDoar = sc.nextInt();
+                switch (opcaoDoar){
+                    case 1:
+                        Gato gato = Gato.listaGato.get(i);
+                        Animal.listaDoados.add(gato);
+                        Gato.listaGato.remove(i);
+                        System.out.println("Gatinho doado com sucesso!");
+                        break;
+                    case 2:
+                        menuPrincipal();
+                        break;
+                }
+            }
+        }
+        menuPrincipal();
+    }
+
+    private static void doarCachorro() {
+        System.out.println("--- DOAR CACHORRO ---");
+        System.out.println("Nome do cachorro: ");
+        String nome = sc.next();
+        for (int i = 0; i < Cachorro.listaCachorro.size(); i++){
+            if (nome.equals(Cachorro.listaCachorro.get(i).getNome())){
+                System.out.println("Têm certeza que deseja doar o(a) " + nome + "?" +
+                        "\n1- Sim;" +
+                        "\n2- Não.");
+                int opcaoDoar = sc.nextInt();
+                switch (opcaoDoar){
+                    case 1:
+                        Cachorro cachorro = Cachorro.listaCachorro.get(i);
+                        Animal.listaDoados.add(cachorro);
+                        Cachorro.listaCachorro.remove(i);
+                        System.out.println("Cachorrinho doado com sucesso!");
+                        break;
+                    case 2:
+                        menuPrincipal();
+                        break;
+                }
+            }
+        }
+        menuPrincipal();
     }
 
     private static void editar() {
@@ -206,8 +281,6 @@ public class Main {
         for (int i = 0; i < Gato.listaGato.size(); i++){
             if (nome.equals(Gato.listaGato.get(i).getNome())){
                 Gato.listaGato.remove(i);
-            } else {
-                System.out.println("Nenhum gato encontrado com esse nome!");
             }
         }
         menuPrincipal();
@@ -221,8 +294,6 @@ public class Main {
             if (nome.equals(Cachorro.listaCachorro.get(i).getNome())){
                 Cachorro.listaCachorro.remove(i);
                 System.out.println("Animal removido com sucesso!");
-            } else {
-                System.out.println("Nenhum cachorro encontrado com esse nome!");
             }
         }
         menuPrincipal();
@@ -232,7 +303,8 @@ public class Main {
         System.out.println("--- LISTAR ---" +
                 "\n1- Cachorro;" +
                 "\n2- Gato;" +
-                "\n3- Voltar.");
+                "\n3- Doados;" +
+                "\n4- Voltar.");
         int opcao = sc.nextInt();
         switch (opcao){
             case 1:
@@ -242,9 +314,20 @@ public class Main {
                 listarGato();
                 break;
             case 3:
+                listarDoados();
+                break;
+            case 4:
                 menuPrincipal();
                 break;
         }
+    }
+
+    private static void listarDoados() {
+        System.out.println("ANIMAIS DOADOS: ");
+        for (int i = 0; i < Animal.listaDoados.size(); i++){
+            System.out.println(Animal.listaDoados.get(i).toString());
+        }
+        menuPrincipal();
     }
 
     private static void listarGato() {
@@ -253,9 +336,7 @@ public class Main {
         String nome = sc.next();
         for (int i = 0; i < Gato.listaGato.size(); i++){
             if (nome.equals(Gato.listaGato.get(i).getNome())){
-                System.out.println(Gato.listaGato.toString());
-            } else {
-                System.out.println("Nenhum gato encontrado com esse nome!");
+                System.out.println(Gato.listaGato.get(i).toString());
             }
         }
         menuPrincipal();
@@ -267,9 +348,7 @@ public class Main {
         String nome = sc.next();
         for (int i = 0; i < Cachorro.listaCachorro.size(); i++){
             if (nome.equals(Cachorro.listaCachorro.get(i).getNome())){
-                System.out.println(Cachorro.listaCachorro.toString());
-            } else {
-                System.out.println("Nenhum cachorro encontrado com esse nome!");
+                System.out.println(Cachorro.listaCachorro.get(i).toString());
             }
         }
         menuPrincipal();

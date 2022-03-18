@@ -1,4 +1,7 @@
+import java.util.ArrayList;
+
 public class Animal {
+    static ArrayList<Animal> listaDoados = new ArrayList<Animal>();
     private String nome;
     private String raca;
     private double altura;

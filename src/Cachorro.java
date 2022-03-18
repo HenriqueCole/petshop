@@ -9,7 +9,7 @@ public class Cachorro extends Animal{
     @Override
     public String toString() {
         return super.toString()+
-                "\nCachorro: " +
+                "\nInformações do Cachorro: " +
                 "\nLatir: " + latir +
                 "\nBrincar Com Bolinha: " + brincarBolinha +
                 "\nFarejar: " + farejar;

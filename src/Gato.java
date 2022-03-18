@@ -9,6 +9,7 @@ public class Gato extends Animal{
     @Override
     public String toString() {
         return super.toString()+
+                "\nInformações do gato: "+
                 "\nMiar: " + miar +
                 "\nQuantidade de leite: " + qtdLeite +
                 "\nTamanho da Unha: " + tamanhoUnha;
